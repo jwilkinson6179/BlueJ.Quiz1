@@ -1,4 +1,4 @@
- 
+import java.io.OutputStream;
 
 public class LoopFun
 {
@@ -9,8 +9,21 @@ public class LoopFun
        * @param number
        * @return the factorial of the number
        */
-      public Integer factorial(Integer number){
-          return null;
+      public Integer factorial(Integer number)
+      {
+            if(number < 0)
+            {
+              return null;
+              // No idea how to return NaN?  Maybe return 0/0;?  Lol.
+            }
+            else if(number == 0 || number == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return (number * factorial(number - 1));
+            }
       }
 
       /**
@@ -20,9 +33,25 @@ public class LoopFun
        * @param phrase
        * @return Upper case string of the first letter of each word
        */
-      public String acronym(String phrase) {
-          return null;
-      }
+        public String acronym(String phrase)
+        {
+            String outpuString = "";
+            String letter = Character.toString(phrase.charAt(0));
+            letter = letter.toUpperCase();
+            outpuString += letter;
+
+            for(int i = 0; i < phrase.length(); i++)
+            {
+                if(phrase.charAt(i) == ' ')
+                {
+                    letter = Character.toString(phrase.charAt(i + 1));
+                    letter = letter.toUpperCase();
+                    outpuString += letter;
+                }
+            }
+
+            return outpuString;
+        }
 
       /**
        * To prevent anyone from reading our messages, we can encrypt it so it will only be readable by its
@@ -36,7 +65,28 @@ public class LoopFun
        * @param word
        * @return the encrypted string by shifting each character by three character
        */
-      public String encrypt(String word) {
-          return null;
-      }
+        public String encrypt(String word)
+        {
+            String output = "";
+            char[] message = word.toCharArray();
+
+            for(char letter : message)
+            {
+                int charValue = (int) letter;
+                char c;
+
+                if(charValue >= 120)
+                {
+                    charValue -= 23;
+                }
+                else
+                {
+                    charValue += 3;
+                }
+                c = (char) charValue;
+                output += Character.toString(c);
+            }
+
+            return output;
+        }
 }
